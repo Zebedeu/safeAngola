@@ -1,0 +1,44 @@
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <form action="<?php echo URL;?>Index/procurar" method="post" >
+            <div class="form-group">
+                <select  name="type" class="form-control form-control-lg">
+                    <option>--</option>
+                    <option value="carro">Carro</option>
+                    <option value="pessoa">Pessoa</option>
+                    <option value="crimes">crimes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2"></label>
+                <input type="text" name="valor" class="form-control tele"   id="formGroupExampleInput2" >
+            </div>
+            <input type="submit" placeholder="Procurar">
+        </form>
+    </div>
+
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
+<!--  Launch demo modal-->
+<!--</button>-->
+<!---->
+<!--<!-- Modal 
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        ...-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
