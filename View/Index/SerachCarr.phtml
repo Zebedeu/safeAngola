@@ -11,15 +11,15 @@
                     $status = $value['status'];
                     if($status == 'roubado' ) : ?>
 
-                        <div class="col-2 float-md-right">
-                            <h1 class="btn btn-danger"> <?php echo $status; ?></h1>
+                        <div class="col-4 float-md-right">
+                            <strong>Status de Alerta: </strong><span class="btn btn-danger"> <?php echo $status; ?></span>
                         </div>
                         <?php endif;
 
                     if($status == 'legal' ) : ?>
 
-                        <div class="col-2 float-md-right">
-                            <h1 class="btn btn-success"> <?php echo $status; ?></h1>
+                        <div class="col-4 float-md-right">
+                            <strong>Status de Alerta: </strong><span class="btn btn-success"> <?php echo $status; ?></span>
                         </div>
                         <?php endif; ?>
 
@@ -62,50 +62,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-5  col-md-4 col-sm-5 float-md-left">
-                    <table class="table">
-                        <thead class="thead-inverse align-content-center">
-                        <tr>
-                            <th>Local do Roubo</th>
-                                <th>Ou do Furto</th>
-                        </tr>
 
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="table-info">Cidade</td>
-                            <td class="table-success"><?php echo $value['cidade']; ?></td>
-
-                        </tr>
-                        <tr>
-                            <td class="table-info">provincia</td>
-                            <td class="table-success"><?php echo $value['provincia']; ?></td>
-
-                        </tr>
-                        <tr>
-                            <td class="table-info">municipio</td>
-                            <td class="table-success"><?php echo $value['municipio']; ?></td>
-
-                        </tr>
-                        <tr>
-                            <td  class="table-info">Bairro</td>
-                            <td class="table-success"><?php echo $value['bairro']; ?></td>
-                        </tr>
-                        <tr>
-                            <td class="table-info">Rua</td>
-                            <td class="table-success"><?php echo $value['rua']; ?></td>
-                        </tr>
-                        <tr>
-                            <td class="table-info">Vila</td>
-                            <td class="table-success"><?php echo $value['vila']; ?></td>
-
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="col-lg-3  float-md-left">
+                <div class="col-lg-4  float-md-left">
                     <table class="table">
                         <thead class="thead-inverse align-content-center">
                         <tr>
@@ -122,6 +80,35 @@
                         </tbody>
                     </table>
                 </div>
+                <p class="col-lg-5 ">
+                    <strong>Local do Furto ou do Roubo</strong>
+
+                    <table class="table">
+                        <thead class="thead-inverse align-content-center">
+                        <tr>
+                            <th>Cidade</th>
+                            <th>provincia</th>
+                            <th>municipio</th>
+                            <th>Bairro</th>
+                            <th>Rua</th>
+                            <th>Vila</th>
+                        </tr>
+
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="table-success"><?php echo $value['cidade']; ?></td>
+                            <td class="table-success"><?php echo $value['provincia']; ?></td>
+                            <td class="table-success"><?php echo $value['municipio']; ?></td>
+                            <td class="table-success"><?php echo $value['bairro']; ?></td>
+                            <td class="table-success"><?php echo $value['rua']; ?></td>
+                            <td class="table-success"><?php echo $value['vila']; ?></td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </p>
 
             </div>
 

@@ -1,0 +1,121 @@
+
+<?php
+
+
+?>
+
+
+
+
+
+<div class="container">
+    <section>
+        <div class="page-header text-center btn-default">
+
+        </div>
+
+        <div id="content" class="col-sm-6">
+            <div class="well">
+                <h2>Login</h2>
+                <p>If you already have an account with us, please login at the </p>
+
+                <div class="form-group">
+                    <a href="<?php use FWAP\Library\Form;
+
+                    echo URL; ?>user" class="btn btn-lg btn-primary">continue</a>
+
+                </div>
+
+            </div>  <!-- end Well -->
+        </div> <!-- end contend and col-sm-6 -->
+
+
+        <div id="content" class="col-sm-6">
+            <div class="well">
+
+                <h2>Register Account</h2>
+
+                <?php
+                echo Form::open(['method' => 'post', 'action' => URL . 'User/signUp', 'files' => 'enctype=multipart/form-data', 'name' => 'signUp', 'class' => 'form-signin', 'style' => 'margin-left:30%;']);
+                ?>
+
+                <div class="form-group">
+                    <label class="control-label" for="input-firstname">First Name</label>
+                    <?php
+                    echo Form::input(['type' => 'text', 'name' => 'nome', 'class' => 'form-control', 'id' => 'user-name', 'placeholder' => 'Nome Completo']);
+                    ?>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="input-firstname">User Name</label>
+
+                    <?php
+                    echo Form::input(['type' => 'text', 'name' => 'usuario', 'class' => 'form-control', 'id' => 'user-name', 'placeholder' => 'Nome de Usuario']);
+                    ?>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="input-firstname">Email</label>
+
+                    <?php
+                    echo Form::input(['type' => 'email', 'name' => 'email', 'class' => 'form-control', 'id' => 'user-name', 'placeholder' => 'email']);
+                    ?>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="input-firstname">Password</label>
+
+                    <?php
+                    echo Form::input(['type' => 'password', 'name' => 'password', 'class' => 'form-control', 'id' => 'user-name', 'placeholder' => 'Password']);
+                    ?>
+                </div>
+
+
+                <div class="form-group">
+                    <?php
+                    echo Form::button(['type' => 'submit', 'class' => 'btn btn-lg btn-primary ', 'id' => 'send_request', 'value' => 'Cadastrar']);
+                    ?>
+
+                </div>
+
+                <?php
+                echo Form::close();
+                ?>
+
+            </div>  <!-- end Well -->
+        </div> <!-- end contend and col-sm-6 -->
+    </section>
+</div>
+
+<script>
+    $(function () {
+
+        $('#send_request').click(function (e) {
+            e.preventDefault();
+            signUp();
+        });
+
+    });
+
+    function signUp() {
+        var firstname = $('form[name=signUp] input[name=nome]')[0].value;
+        var username = $('form[name=signUp] input[name=usuario]')[0].value;
+        var email = $('form[name=signUp] input[name=email]')[0].value;
+        var password = $('form[name=signUp] input[name=password]')[0].value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo URL; ?>User/signUp',
+            data: {firstname: firstname, lastname: lastname, username: username, email: email, password: password}
+        }).done(function (resposta) {
+            if (resposta) {
+                alert(" inserido");
+                document.location = '<?php echo URL; ?>User';
+
+            } else {
+                alert("nada inserido");
+            }
+        });
+
+    }
+</script>

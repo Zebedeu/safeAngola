@@ -1,0 +1,136 @@
+<?php
+/**
+ *
+ * knut7 Framework (http://framework.artphoweb.com/)
+ * knut7 FW(tm) : Rapid Development Framework (http://framework.artphoweb.com/)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link      http://github.com/zebedeu/artphoweb for the canonical source repository
+ * @copyright (c) 2016.  knut7  Software Technologies AO Inc. (http://www.artphoweb.com)
+ * @license   http://framework.artphoweb.com/license/new-bsd New BSD License
+ * @author    Marcio Zebedeu - artphoweb@artphoweb.com
+ * @version   1.0.0
+ */
+/**
+ * Created by PhpStorm.
+ * User: artphotografie
+ * Date: 2016/02/14
+ * Time: 11:13 AM
+ */
+?>
+
+<?php
+
+use \FWAP\Helpers\Security\Session;
+use FWAP\Library\Form;
+
+if (!Session::exist()) :
+    ?>
+
+    <div class="container">
+        <section>
+            <div class="page-header text-center btn-default">
+
+            </div>
+
+            <div id="content" class="col-sm-6">
+                <div class="well">
+                    <h2>Register Account</h2>
+                    <p>By creating an account you will be able to all faster, be up to date on an order's status, and keep track of the data you have previously made.</p>
+
+                    <div class="form-group">
+                        <a href="<?php echo URL; ?>user/signUp" class="btn btn-lg btn-primary">continue</a>
+
+                    </div>
+
+                </div>  <!-- end Well -->
+            </div> <!-- end contend and col-sm-6 -->
+
+
+            <div id="content" class="col-sm-6">
+                <div class="well">
+
+                    <h2>Login</h2>
+
+                    <?php
+                    echo Form::open(['method' => 'post', 'action' => URL . 'User/signIn', 'name' => 'signIn', 'class' => 'form-horizontal', 'style' => 'margin-left:30%;']);
+                    ?>
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="input-firstname">Username</label>
+
+                        <?php
+                        echo Form::input(['type' => 'text', 'name' => 'usuario', 'class' => 'form-control', 'id' => 'user-name', 'placeholder' => 'Nome de Usuario']);
+                        ?>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="input-firstname">Password</label>
+
+                        <?php
+                        echo Form::input(['type' => 'password', 'name' => 'password', 'class' => 'form-control', 'id' => 'user-name', 'placeholder' => 'Password']);
+                        ?>
+                    </div>
+
+                    <div class="form-group">
+                        <?php
+                        echo Form::button(['type' => 'submit', 'class' => 'btn btn-lg btn-primary ', 'id' => 'send_request', 'value' => 'Login']);
+                        ?>
+
+                    </div>
+
+
+                    <?php
+                    echo Form::close();
+                    ?>
+
+
+
+
+
+                </div>  <!-- end Well -->
+            </div> <!-- end contend and col-sm-6 -->
+        </section>
+    </div>
+
+<?php else : ?>
+    <script>
+
+        location.host
+                :"<?php URL . 'Cpanel' ?>";</script>
+
+
+<?php endif; ?>
+
+
+<script>
+            $(function () {
+                $('#send_request').click(function (e) {
+                    e.preventDefault();
+                    signIn();
+                });
+
+            });
+
+    function signIn() {
+        var username = $('form[name=signIn] input[name=usuario]')[0].value;
+        var password = $('form[name=signIn] input[name=password]')[0].value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo URL; ?>user/signIn',
+            data: {username: username, password: password}
+        }).done(function (resposta) {
+            if (resposta == 1) {
+
+            location.href:"<?php URL . 'Account/Cpanel' ?>";
+            }
+        });
+
+    }
+</script>

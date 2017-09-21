@@ -1,0 +1,20 @@
+<?php
+
+use \FWAP\Helpers\Security\Session;
+?>
+<div class="container">
+    <section>
+        <div class="page-header text-center btn-default">
+
+
+    <form action="<?php echo URL; ?>Account/insertImageUser" method="post" enctype="multipart/form-data" >
+        <input type="file" name="archive[]" multiple >
+        <input type="text" name="usuarios_id" value="<?php echo Session::get('ID') ?>">
+        <button type='submit'  class=' btn btn-lg btn-default glyphicon glyphicon-upload'>
+
+    </button>
+
+    </form>
+        </div>
+    </section>
+</div>

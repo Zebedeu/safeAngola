@@ -16,6 +16,7 @@
  * Tinymce styple
  *
  * */
+use FWAP\Helpers\Security\Session;
 use \FWAP\Helpers\Utility\Assets;
 use \FWAP\Library\Copyright\Copyright;
 ?>
@@ -40,12 +41,20 @@ use \FWAP\Library\Copyright\Copyright;
 </div>
     
 <br/><br/>
-
+<?php if (Session::exist()) : ?>
+    <?php Session::get('U_NAME'); ?>
+    <div  class="btn btn-info glyphicon glyphicon-align-center glyphicon-log-out"><a href="<?php echo URL;?>user/DestroySession"> Logaut</a></div>
+    <p class=" btn btn-info glyphicon glyphicon-user"><?php echo "\n" . Session::get('U_NAME'); ?></p>
+<?php else : ?>
+    <a href="<?php echo URL; ?>user"><button id="closse" class="btn btn-info glyphicon glyphicon-align-center glyphicon-log-in"> Login</button></a>
+    <a href="<?php echo URL; ?>user/signUp"><button id="closse" class="btn btn-info glyphicon glyphicon-align-center glyphicon-">REGISTER</button></a>
+    <?php ?>
+<?php endif; ?>
 <footer class="footer panel-footer text-center ">
     <?php echo  \FWAP\Helpers\Copyright\Copyright::copyright(2015, 'knut7 FRAMWORK'); ?>
 </footer>
 
-<script src="<?php echo URL; ?>Public/bootstrap-4/jQuery.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>Public/bootstrap-4/js/jquery-3.2.1.js"></script>
 <script src="<?php echo URL; ?>Public/bootstrap-4/js/bootstrap.min.js"></script>
 <script src="<?php echo URL; ?>Public/bootstrap-4/js/bootstrap.js"></script>
 <script src="<?php echo URL; ?>Public/tinymce/tinymce.min.js"></script>

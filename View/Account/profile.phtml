@@ -1,0 +1,212 @@
+<?php
+
+use \FWAP\Helpers\Security\Session;
+use FWAP\Library\Form;
+
+?>
+<!-- End features -->
+<div class="container">
+    <section>
+        <div class="page-header" id="features">
+            <br/><br/><br/>
+            <h5>Perfil da(o) <?php
+                foreach ($this->UserPhoto as $key => $values) {
+                    echo $values['firstname'];
+                    if (Session::exist()) {
+                        if (Session::get('role') == 'owner') {
+                            echo \FWAP\Helpers\Form::open(['method' => 'post', 'name' => 'perfil', 'class' => 'form-signin', 'style' => 'margin-left:10%;']);
+                            ?>
+
+                            <select name="role">
+                                <option value="owner" <?php if ($values['role'] == 'owner') echo 'selected' ?>>owner</option>
+                                <option value="admin" <?php if ($values['role'] == 'admin') echo 'selected' ?>>admin</option>
+                                <option value="default" <?php if ($values['role'] == 'default') echo 'selected' ?>>default</option>
+                            </select>
+                            <button class="btn  btn-danger" onclick="updateUser(<?php echo $values['id']; ?>)" >Atualizar</button>
+                            <?php
+                            echo \FWAP\Helpers\Form::close();
+                        } elseif (Session::get('role') != 'owner') {
+
+                            echo "\n" . $values['role'];
+                        }
+                    } else {
+
+                        echo "\n" . $values['role'];
+                    }
+                }
+                ?></h5>
+
+        </div><!-- End page header -->
+        <div class="col-sm-3 pull-left">
+            <div class="row">
+                <?php
+                foreach ($this->UserPhoto as $key => $value) {
+                    if ($value['path'] == true) {
+                        ?>
+                        <p><img  src="<?php echo URL . $value['path']; ?>" 
+                                 class="image img-responsive img-thumbnail" alt="<?php echo $this->UserPhoto['path']; ?>">
+                        </p>
+
+                        <?php
+                        if (Session::exist()) {
+                            if (Session::get('role') == 'owner' || Session::get('role') == 'admin') {
+                                ?>
+                                <a href="galery/delete/<?php echo $value['id']; ?>"  class="glyphicon glyphicon-remove" ></a>
+                                <?php
+                            }
+                        }
+                    } else {
+                        echo "no image";
+                    }
+                }
+                ?>
+
+                <h3>Informações</h3>
+                <table  class="table table-bordered table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>perfil</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->users as $key => $values) { ?>
+
+                            <tr>
+                                <td>Nome: <?php echo $values['firstname'] . "\n" . $values['lastname']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Username: <?php echo $values['username']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Email: <?php echo $values['email']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Telephone: <?php echo $values['telephone']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Company: <?php echo $values['company']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Address 1: <?php echo $values['address_1']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Address 2: <?php echo $values['address_2']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Post Code: <?php echo $values['postcode']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>City: <?php echo $values['city']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Country: <?php echo $values['country_id']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Region/State: <?php echo $values['zone_id']; ?></td>
+                            </tr>
+                        <?php }
+                        ?>
+                    </tbody>
+                </table>
+            </div> <!-- End Row -->
+        </div> <!-- col-sm-3 pull-left -->
+
+        <div class="col-lg-6 pull-left" >
+
+                <?php
+                echo Form::open(['method' => 'post','action'=>URL . 'account/insertMural', 'name' => 'insert', 'class' => 'form-signin']);
+                ?>
+                <?php
+                echo Form::textBox([ 'name' => 'message', 'id' => 'user-name', 'class' => 'form-control', 'placeholder' => 'Diz ola a(o) ' . $values['firstname']]);
+                ?>
+                <?php
+                echo Form::input(['type' => 'hidden', 'name' => 'usuarios_id', 'id' => 'user-name', 'class' => 'form-control', 'value' => $values['id']]);
+                ?>
+
+                <?php
+                echo Form::submit(['type'=>'submit', 'value'=>'deixa um recado']);
+
+                echo Form::close();
+                ?>
+        </div> <!-- col-lg-4 pull-left -->
+
+
+        <small><?php foreach ($this->mural as $key => $mural ) { ?>
+
+            <div class="well col-lg-6">
+
+               <p> <?php echo $mural['message']; ?></p>
+
+                <div class="well">
+
+                        <?php
+                        echo Form::open(['method' => 'post', 'action' => URL . 'account/insertRespo', 'class' => 'form-signin']);
+                        ?>
+                        <?php
+                        echo Form::input(['type' => 'text', 'name' => 'message', 'id' => 'user-name', 'class' => 'form-control', 'placeholder' => 'responde']);
+                        ?>
+                        <?php
+                        echo Form::input(['type' => 'hidden', 'name' => 'mural_id', 'id' => 'user-name', 'class' => 'form-control', 'value' => $mural['id'] ]);
+                        ?>
+                        <?php
+
+                        echo Form::submit(['type'=>'submit', 'value'=>'responder']);
+
+                        ?>
+
+                        <?php
+                        echo Form::close();
+                        ?>
+
+                </div>
+
+            <?php
+            /* pegar todas as respostas do mural
+            */
+            ?>
+
+            <strong>Respostas: </strong><br>
+            <small><?php foreach ($this->resmural as $key => $value ) {
+                        echo $value['message'] . "<br>";
+            } ?></small>
+
+        </div> <!-- End the  well-col-lg-6 -->
+
+            <?php } ?>
+
+    </section> <!-- End section -->
+</div> <!-- End Conteiner -->
+
+<script>
+
+    function updateUser() {
+
+        var role = $('form[name=perfil] select[name=role]')[0].value;
+        role = (role != "<?php echo $values['role'] ?>" && role != '') ? role : "<?php echo $values['role']; ?>";
+        $.ajax({
+            type: "post",
+            url: "<?php echo URL; ?>account/manageUser",
+            data: {id: id, role: role }
+        }).done(function (resposta) {
+            if (resposta == true) {
+                alert(" atualizado com sucesso");
+            }
+        });
+
+        alert("vc vai atualizar o usuario com o id:" + id);
+    }
+
+    $(function () {
+
+        $('.deletar').click(function (e) {
+            var c = confirm("Tens a certeza que quer deletar?");
+            if (c == false)
+                return false;
+        });
+
+    });
+</script>
+
+
+

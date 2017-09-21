@@ -1,0 +1,43 @@
+
+
+
+<?php
+
+use FWAP\Helpers\Form;
+?>
+
+<!-- End features -->
+<div class="container">
+    <section>
+        <div class="page-header" id="features">
+            <h2>Lista de Usuarios Cadastrados<small></small></h2>
+        </div><!-- End page header -->
+
+        <div class="row">
+            <div class="col-lg-2">
+                <table  class="table table-bordered table-hover table-responsive">
+                    <thead>
+
+                    </thead>
+                    <?php foreach ($this->users as $key => $value) { ?>
+
+                        <tbody>
+                        <tr>
+
+                        </tr>
+                            <tr>
+                                <td><a href="<?php echo URL ?>account/profile/<?php echo $value['id']; ?> ">
+                                        <?php echo $value['firstname']; ?>
+                                       <img class="img-responsive thumbnail col-lg-12" src="<?php  echo $value['path']; ?>" >
+                                    </a></td>
+
+                            </tr>
+                        </tbody>
+                    <?php }
+                    ?>
+                </table>
+            </div>
+
+    </section>
+</div><!-- End Conteiner -->
+

@@ -31,56 +31,55 @@ use \FWAP\Helpers\Utility\Assets;
     <?php
     if (isset($this->Js)) {
         foreach ($this->Js as $Js) {
-            echo ' <script type="text/javascript" src="' . URL . 'view/' . $Js . '"></script>';
+            echo ' <script type="text/javascript" src="' . URL . DIR_FILE. 'view/' . $Js . '"></script>';
         }
     }
     ?>
-      <?php echo Assets::js([ URL."Public/bootstrap/js/bootstrap.js", URL."Public/bootstrap/jQuery.js", URL."Public/bootstrap/js/bootstrap.min.js"] ); ?>
+        <script type="text/javascript" src="<?php echo URL; ?>Public/bootstrap-4/js/jquery-3.2.1.js"></script>
+
         </head>
 
     <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <p class="navbar-brand">knut7</p>
-                </div><!-- End Navbar Header -->
 
-                <div class="collapse navbar-collapse " id="navbar-collapse">
+    <div class="container">
+        <div class="row">
 
 
-                    <div class="navbar-btn navbar-right  ">
-                        <?php if (Session::exist()) : ?>
-                            <?php Session::get('U_NAME'); ?>
-                            <div  class="btn btn-info glyphicon glyphicon-align-center glyphicon-log-out"><a href="<?php echo URL;?>user/DestroySession"> Logaut</a></div>
-                            <p class=" btn btn-info glyphicon glyphicon-user"><?php echo "\n" . Session::get('U_NAME'); ?></p>
-                        <?php else : ?>
-                            <a href="<?php echo URL; ?>user"><button id="closse" class="btn btn-info glyphicon glyphicon-align-center glyphicon-log-in"> Login</button></a>
-                            <a href="<?php echo URL; ?>user/signUp"><button id="closse" class="btn btn-info glyphicon glyphicon-align-center glyphicon-">REGISTER</button></a>
-                            <?php ?>
-                        <?php endif; ?>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    </div>
-                    <ul class="nav navbar-nav" >
-                        <li><a href="<?php echo URL; ?>index">HOME</a> </li>
-                        <?php if (Session::exist()): ?>
-                            <li class=""><a href="<?php echo URL; ?>account/cpanel">PAINEL</a> </li>
-                            <!-- <li class=""><a href="<?php echo URL; ?>SearchUser">DADOS PESSOAIS</a></li> -->
-                            <?php if (Session::get('role') == 'owner' || Session::get('role') == 'admin'): ?>
-                            <?php endif; ?>
+        <a class="navbar-brand" href="#">Navbar</a>
 
-                        <?php endif; ?>
-                        <li class=""><a href="<?php echo URL; ?>Categorias">MAIS</a> </li>
-                        <li class=""><a href="<?php echo URL; ?>faq">FAQ</a> </li>
 
-                    </ul>
-                </div>
-            </div><!-- End Conteiner -->
-        </nav><!-- End Navbar -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="<?php echo URL;?>"><span class="hidden-xs-down">Home</span><span class="hidden-sm-up">TN</span></a>
+                </li>
 
+                <?php if(Session::exist()) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo URL;?>Account/Cpanel"><span class="hidden-xs-down">CPANEL</span><span class="hidden-sm-up">TN</span></a>
+                </li>
+                <?php endif;?>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="hidden-xs-down">LongTabName</span><span class="hidden-sm-up">TN</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="hidden-xs-down">LongTabName</span><span class="hidden-sm-up">TN</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="hidden-xs-down">LongTabName</span><span class="hidden-sm-up">TN</span></a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+        </div>
+    </div>
+    <br><br><br><br>

@@ -1,0 +1,262 @@
+<?php
+
+/**
+ *
+ * knut7 Framework (http://framework.artphoweb.com/)
+ * knut7 FW(tm) : Rapid Development Framework (http://framework.artphoweb.com/)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link      http://github.com/zebedeu/artphoweb for the canonical source repository
+ * @copyright (c) 2016.  knut7  Software Technologies AO Inc. (http://www.artphoweb.com)
+ * @license   http://framework.artphoweb.com/license/new-bsd New BSD License
+ * @author    Marcio Zebedeu - artphoweb@artphoweb.com
+ * @version   1.0.0
+ */
+use \FWAP\Helpers\Security\Session;
+use FWAP\Library\Form;
+
+?>
+
+<div class="col-sm-12">
+
+    <section>
+        <div class="container">
+            <section>
+                <div class="page-header btn-default text-center" id="contact">
+                    <!--  <?php
+                    foreach ($this->breadcrumbs as $key => $value) {
+
+                        echo $value;
+                    }
+                    ?> -->
+                </div> <!-- End Page Header -->
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h1>My Account</h1>
+
+                        <small>Your Personal Details</small>
+                        <hr>
+
+                        <?php
+                        echo Form::open(['method' => 'post', 'name' => 'perfil', 'class' => 'form-signin', 'style' => 'margin-left:30%;']);
+                        ?>
+
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">First Name</label>
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'firstname', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['firstname']]);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">Last Name</label>
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'lastname', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['lastname']]);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">User Name</label>
+
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'username', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['username']]);
+                            ?>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">E-mail</label>
+
+                            <?php
+                            echo Form::input(['type' => 'email', 'name' => 'email', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['email']]);
+                            ?>
+
+                        </div>
+                        <small>Your Address</small>
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">Telephone</label>
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'telephone', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['telephone']]);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">Company</label>
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'company', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['company']]);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">Address 1</label>
+
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'address_1', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['address_1']]);
+                            ?>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">Address 2</label>
+
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'address_2', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['address_2']]);
+                            ?>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">Post Code</label>
+
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'postcode', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['postcode']]);
+                            ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">City</label>
+
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'city', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['city']]);
+                            ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">Country</label>
+
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'country_id', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['country_id']]);
+                            ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="input-firstname">Region/State</label>
+
+                            <?php
+                            echo Form::input(['type' => 'text', 'name' => 'zone_id', 'class' => 'form-control', 'id' => 'user-name', 'value' => $this->UserData['zone_id']]);
+                            ?>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <br/>
+                            <button class="btn btn-primary btn-inverse btn-default" onclick="updateUser(<?php echo $this->UserData['id']; ?>)" ><p class="glyphicon glyphicon-refresh "></p></button>
+                            <a class="btn btn-danger deletar" href="<?php echo URL ?>account/deletes/<?php echo $this->UserData['id']; ?>"><p class="glyphicon glyphicon-trash "></p></a>
+
+                        </div>
+
+
+
+                        <?php
+                        echo Form::close();
+                        ?>
+
+
+
+
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="row">
+                            <div  class="col-lg-6">
+
+                                <?php if (!empty($this->UserPhoto['path'])) { ?>
+                                    <p><img  src="<?php echo URL . $this->UserPhoto['path']; ?>" 
+                                             class="image img-responsive img-thumbnail" alt="<?php echo $this->UserPhoto['path']; ?>">
+                                    </p>
+
+
+                                            <a href="<?php echo URL; ?>account/deleteImage/<?php echo $this->UserPhoto['id']; ?>"  class="glyphicon glyphicon-remove" ></a>
+                                            <?php
+
+                                } else {
+                                    echo "nao tem imagem";
+                                }
+                                ?>
+                                <p><a href="<?php echo URL; ?>Account/imageUser">Update Your Photo picture</a></p>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <h3>Outras Informações</h3>
+                        <p></p>
+                    </div>
+                </div>
+
+
+            </section>
+
+
+
+
+
+
+
+            <script>
+
+                function updateUser(id) {
+
+                    var firstname = $('form[name=perfil] input[name=firstname]')[0].value;
+                    firstname = (firstname != "<?php echo $this->UserData['firstname'] ?>" && firstname != '') ? firstname : "<?php echo $this->UserData['firstname'] ?>";
+                    var lastname = $('form[name=perfil] input[name=lastname]')[0].value;
+                    lastname = (lastname != "<?php echo $this->UserData['lastname'] ?>" && lastname != '') ? lastname : "<?php echo $this->UserData['lastname'] ?>";
+                    var username = $('form[name=perfil] input[name=username]')[0].value;
+                    username = (username != "<?php echo $this->UserData['username'] ?>" && username != '') ? username : "<?php echo $this->UserData['username'] ?>";
+                    var email = $('form[name=perfil] input[name=email]')[0].value;
+                    email = (email != "<?php echo $this->UserData['email'] ?>" && email != '') ? email : "<?php echo $this->UserData['email'] ?>";
+
+
+                    var telephone = $('form[name=perfil] input[name=telephone]')[0].value;
+                    telephone = (telephone != "<?php echo $this->UserData['telephone'] ?>" && telephone != '') ? telephone : "<?php echo $this->UserData['telephone'] ?>";
+
+                    var company = $('form[name=perfil] input[name=company]')[0].value;
+                    company = (company != "<?php echo $this->UserData['company'] ?>" && company != '') ? company : "<?php echo $this->UserData['company'] ?>";
+
+                    var address_1 = $('form[name=perfil] input[name=address_1]')[0].value;
+                    address_1 = (address_1 != "<?php echo $this->UserData['address_1'] ?>" && address_1 != '') ? address_1 : "<?php echo $this->UserData['address_1'] ?>";
+
+                    var address_2 = $('form[name=perfil] input[name=address_2]')[0].value;
+                    address_2 = (address_2 != "<?php echo $this->UserData['address_2'] ?>" && address_2 != '') ? address_2 : "<?php echo $this->UserData['address_2'] ?>";
+
+                    var postcode = $('form[name=perfil] input[name=postcode]')[0].value;
+                    postcode = (postcode != "<?php echo $this->UserData['postcode'] ?>" && postcode != '') ? postcode : "<?php echo $this->UserData['postcode'] ?>";
+                    var city = $('form[name=perfil] input[name=city]')[0].value;
+                    city = (city != "<?php echo $this->UserData['city'] ?>" && city != '') ? city : "<?php echo $this->UserData['city'] ?>";
+                    var country_id = $('form[name=perfil] input[name=country_id]')[0].value;
+                    country_id = (country_id != "<?php echo $this->UserData['country_id'] ?>" && country_id != '') ? country_id : "<?php echo $this->UserData['country_id'] ?>";
+                    var zone_id = $('form[name=perfil] input[name=zone_id]')[0].value;
+                    zone_id = (zone_id != "<?php echo $this->UserData['zone_id'] ?>" && zone_id != '') ? zone_id : "<?php echo $this->UserData['zone_id'] ?>";
+
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo URL; ?>account/updates",
+                        data: {id: id, firstname: firstname, lastname: lastname, username: username, email: email, telephone: telephone,
+                            company: company, address_1: address_1, address_2: address_2, postcode: postcode, city: city, country_id: country_id, zone_id: zone_id}
+                    }).done(function (resposta) {
+                        if (resposta == true) {
+                            alert(" atualizado com sucesso");
+                        }
+
+                    });
+
+                    alert("vc vai atualizar o usuario com o id:" + id);
+                }
+
+
+                $(function () {
+
+                    $('.deletar').click(function (e) {
+                        var c = confirm("Tens a certeza que quer deletar?");
+                        if (c == false)
+                            return false;
+
+                    });
+
+                });
+
+
+            </script>
+
+
